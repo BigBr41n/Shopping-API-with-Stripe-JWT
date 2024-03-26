@@ -63,9 +63,24 @@ router.delete('/:id' , verfiyTokenAndAdmin , async (req , res)=>{
 
 
 
+
 router.get('/all' , async (req,res)=>{
     try {
-        const products = await Product.find(); 
+        const category = req.query.category ; 
+        const newProducts = req.query.new ; 
+
+
+        let products ; 
+
+        if (newProducts) products = await Product.find().sort({createdAt : -1}).limit(5); 
+        else if (category) products = await Product.find({categories : {
+            $in:[category] ,
+        }})
+        else products = await Product.find(); 
+
+
+
+ 
         res.status(200).json(products); 
     } catch (error) {
         res.status(500).json(error); 
@@ -74,6 +89,16 @@ router.get('/all' , async (req,res)=>{
 
 
 
+
+
+router.get('/:id' , async (req,res)=>{
+    try {
+        const product = await Product.findById(req.params.id); 
+        res.status(200).json(Product); 
+    } catch (error) {
+        res.status(500).json(error); 
+    }
+});
 
 
 
