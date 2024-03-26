@@ -7,7 +7,8 @@ const userRoute     = require('./api/routes/users');
 const productRoute  = require('./api/routes/product'); 
 const cartRoute     = require('./api/routes/cart'); 
 const orderRoute    = require('./api/routes/order'); 
-const AuthRoute     = require('./api/routes/auth'); 
+const AuthRoute     = require('./api/routes/auth');
+const PaymentRoute = require('./api/routes/strip') 
 
 
 
@@ -38,7 +39,8 @@ app.use("/api/v1/user" , userRoute);
 app.use("/api/v1/product" , productRoute);
 app.use("/api/v1/cart" , cartRoute);
 app.use("/api/v1/order" , orderRoute);
-app.use("api/auth" , AuthRoute); 
+app.use("/api/auth" , AuthRoute); 
+app.use("/api/v1" , PaymentRoute); 
 
 
 
