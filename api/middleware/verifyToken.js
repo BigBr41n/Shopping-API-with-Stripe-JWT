@@ -29,7 +29,7 @@ const verfiyToken = (req , res , next)=>{
 
 const verfiyTokenAndAutho = (req , res , next)=>{
     verfiyToken(req , res , ()=>{
-        if(req.user.id = req.params.id || req.user.isAdmin){
+        if(req.user.id === req.params.id || req.user.isAdmin){
             next() ; 
         }else {
             res.status(403).json({message : "not allowed"}); 
